@@ -1,33 +1,77 @@
 .note-container {
-  padding: 10px;
-  margin: 20px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 20px;
+  margin: 15px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .note-title {
   color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.note-title:hover {
+  color: #007bff;
 }
 
 .note-content {
   color: #666;
+  font-size: 16px;
+  margin-bottom: 15px;
 }
 
 .note-date {
   color: #999;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
 }
 
 .delete-button {
-  background-color: #f44336; 
+  background-color: #250502;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 18px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .delete-button:hover {
-  background-color: #d32f2f;
+  background-color: #550404;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .note-container {
+    padding: 15px;
+  }
+
+  .note-title {
+    font-size: 18px;
+  }
+
+  .note-content {
+    font-size: 14px;
+  }
+
+  .note-date {
+    font-size: 0.8rem;
+  }
+
+  .delete-button {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
 }

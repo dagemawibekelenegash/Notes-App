@@ -54,27 +54,12 @@ function Home() {
 
   return (
     <div>
-      <div className="notes-section">
-        <div className="notes-header">
-          <h2>Notes</h2>
-          <button onClick={handleLogout} className="logout-button">
-            Logout
-          </button>
-        </div>
-
-        {notes.map((note) => (
-          <Note
-            note={note}
-            onDelete={deleteNote}
-            key={note.id}
-            className="note"
-          />
-        ))}
-      </div>
-      <h2>Create a Note</h2>
+      <button onClick={handleLogout} className="logout-button">
+        Logout
+      </button>
+      <h2 className="note-header">Create a Note</h2>
       <form onSubmit={createNote}>
         <label htmlFor="title">Title:</label>
-        <br />
         <input
           type="text"
           id="title"
@@ -83,8 +68,8 @@ function Home() {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
+
         <label htmlFor="content">Content:</label>
-        <br />
         <textarea
           id="content"
           name="content"
@@ -92,9 +77,17 @@ function Home() {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
-        <br />
-        <input type="submit" value="Submit"></input>
+
+        <input type="submit" value="Submit" />
       </form>
+
+      <div className="notes-section">
+        <h2 className="note-header">Notes</h2>
+
+        {notes.map((note) => (
+          <Note note={note} onDelete={deleteNote} key={note.id} />
+        ))}
+      </div>
     </div>
   );
 }
