@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from api.views import CreateUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .home_view import home_view
 
 # URL patterns for the project
 urlpatterns = [
@@ -34,4 +35,5 @@ urlpatterns = [
     ),  # Refresh JWT token
     path("api-auth/", include("rest_framework.urls")),  # Login/logout for browsable API
     path("api/", include("api.urls")),  # Routes for app-specific endpoints
+    path("", home_view),
 ]
