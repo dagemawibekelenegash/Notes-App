@@ -6,8 +6,6 @@ const myBaseUrl = isDevelopment
   ? import.meta.env.VITE_API_BASE_URL_LOCAL
   : import.meta.env.VITE_API_BASE_URL_DEPLOY;
 
-console.log("Environment Mode:", import.meta.env.MODE);
-console.log("Base URL:", myBaseUrl);
 
 const api = axios.create({
   baseURL: myBaseUrl,
