@@ -15,7 +15,7 @@ A simple and intuitive notes application built using **React** for the frontend 
 
 ## 🌍 Live Demo
 
-🚀 Check out the live demo of **Notes App** here: [Notes App Demo](#)  
+🚀 Check out the live demo of **Notes App** here: [Notes App Demo](https://notes-app-1-qi5b.onrender.com)  
 
 ---
 
