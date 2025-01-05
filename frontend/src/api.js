@@ -1,22 +1,30 @@
 import axios from "axios";
 import { ACCESS_TOKEN } from "./constants";
 
-// Create an axios instance with base URL from environment variables
+const isDevelopment = import.meta.env.MODE === 'development';
+const myBaseUrl = isDevelopment
+  ? import.meta.env.VITE_API_BASE_URL_LOCAL
+  : import.meta.env.VITE_API_BASE_URL_DEPLOY;
+
+console.log("Environment Mode:", import.meta.env.MODE);
+console.log("Base URL:", myBaseUrl);
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
+  baseURL: myBaseUrl,
 });
 
-// Request interceptor to add Authorization header with token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem(ACCESS_TOKEN); // Retrieve token from localStorage
+    const token = localStorage.getItem(ACCESS_TOKEN);
+    console.log("Token:", token);
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`; // Attach token to request headers
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    return config; // Return config to proceed with the request
+    return config;
   },
   (error) => {
-    return Promise.reject(error); // Reject if error occurs
+    console.error("Request Error:", error);
+    return Promise.reject(error);
   }
 );
 
