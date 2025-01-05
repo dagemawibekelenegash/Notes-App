@@ -6,30 +6,32 @@ import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
+  // State variables for form inputs and loading state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const name = method === "login" ? "Login" : "Register";
+  const name = method === "login" ? "Login" : "Register"; // Determine form type
 
   const handleSubmit = async (e) => {
     setLoading(true);
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
 
     try {
       const res = await api.post(route, { username, password });
       if (method === "login") {
+        // Save tokens to local storage on successful login
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-        navigate("/");
+        navigate("/"); // Redirect to home page
       } else {
-        navigate("/login");
+        navigate("/login"); // Redirect to login after registration
       }
     } catch (error) {
-      alert(error);
+      alert(error); // Show error message
     } finally {
-      setLoading(false);
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -50,7 +52,7 @@ function Form({ route, method }) {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      {loading && <LoadingIndicator />}
+      {loading && <LoadingIndicator />} {/* Show loading indicator */}
       <button className="form-button" type="submit">
         {name}
       </button>

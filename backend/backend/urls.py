@@ -20,11 +20,18 @@ from django.urls import path, include
 from api.views import CreateUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+# URL patterns for the project
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/user/register/", CreateUserView.as_view(), name="register"),
-    path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
-    path("api-auth/", include("rest_framework.urls")),
-    path("api/", include("api.urls")),
+    path("admin/", admin.site.urls),  # Admin panel
+    path(
+        "api/user/register/", CreateUserView.as_view(), name="register"
+    ),  # User registration
+    path(
+        "api/token/", TokenObtainPairView.as_view(), name="get_token"
+    ),  # JWT token generation
+    path(
+        "api/token/refresh/", TokenRefreshView.as_view(), name="refresh"
+    ),  # Refresh JWT token
+    path("api-auth/", include("rest_framework.urls")),  # Login/logout for browsable API
+    path("api/", include("api.urls")),  # Routes for app-specific endpoints
 ]
